@@ -37,8 +37,24 @@ ament_target_dependencies(desire_publisher rclcpp rom_msgs)
 add_executable(desire_subscriber src/subscriber.cpp)
 ament_target_dependencies(desire_subscriber rclcpp rom_msgs)
 
+add_executable(server src/service_server.cpp)
+ament_target_dependencies(server rclcpp rom_msgs)
+
+add_executable(client src/service_client.cpp)
+ament_target_dependencies(client rclcpp rom_msgs)
+
 install(TARGETS
 	desire_publisher
   desire_subscriber
-	DESTINATION lib/${PROJECT_NAME})
+  server
+  client
+	DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
 ament_package()
+
